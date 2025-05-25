@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: n <n@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:09:21 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/18 03:04:54 by n                ###   ########.fr       */
+/*   Updated: 2025/05/25 17:57:47 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,6 @@ void	*ft_bzero(void *s, size_t n)
 		i++;
 	}
 	return (s);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	count;
-
-	count = 0;
-	while (*str != '\0')
-	{
-		count++;
-		str++;
-	}
-	return (count);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

@@ -1,16 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/25 16:58:31 by annmakar          #+#    #+#             */
+/*   Updated: 2025/05/25 22:11:42 by annmakar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "so_long.h"
 
 void	move_player(t_data *data, int new_x, int new_y)
 {
 	char next_tile = data->map[new_y][new_x];
 
-	if (next_tile == '1') // Wall
+	if (next_tile == '1' || (next_tile == 'E' && data->collectible_count != 0))
 		return;
-
 	if (next_tile == 'C') // Collectible
 	{
 		data->collectible_count--;
-		data->map[new_y][new_x] = '0'; // remove collectible
 	}
 	if (next_tile == 'E' && data->collectible_count == 0)
 	{
@@ -18,8 +29,6 @@ void	move_player(t_data *data, int new_x, int new_y)
 		exit_game(data);
 		return;
 	}
-	if (new_x < 0 || new_x >= data->map_width || new_y < 0 || new_y >= data->map_height)
-  	  return;
 	data->map[data->player_y][data->player_x] = '0'; // clear old pos
 	data->player_x = new_x;
 	data->player_y = new_y;
@@ -34,15 +43,15 @@ int on_keypress(int keysym, t_data *data)
     int new_x = data->player_x;
     int new_y = data->player_y;
 
-    if (keysym == KEY_W || keysym == KEY_UP)
+    if (keysym == 119 || keysym == 65362)
         new_y--;
-    else if (keysym == KEY_S || keysym == KEY_DOWN)
+    else if (keysym == 115 || keysym == 65364)
         new_y++;
-    else if (keysym == KEY_A || keysym == KEY_LEFT)
+    else if (keysym == 97 || keysym == 65361)
         new_x--;
-    else if (keysym == KEY_D || keysym == KEY_RIGHT)
+    else if (keysym == 100 || keysym == 65363)
         new_x++;
-    else if (keysym == KEY_ESC)
+    else if (keysym == 65307)
         exit_game(data);
 
     move_player(data, new_x, new_y);

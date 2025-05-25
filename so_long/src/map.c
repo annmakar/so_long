@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/25 16:58:37 by annmakar          #+#    #+#             */
+/*   Updated: 2025/05/25 22:03:26 by annmakar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "so_long.h"
 
 char	**load_map(const char *filename)
@@ -16,6 +29,9 @@ char	**load_map(const char *filename)
 		return (NULL);
 	while ((line = get_next_line(fd)))
 	{
+		int len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
 		map[i++] = line;
 	}
 	map[i] = NULL;
@@ -68,15 +84,15 @@ void	load_images(t_data *data)
 	width = TILE_SIZE;
 	height = TILE_SIZE;
 	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/walls.xpm", &width, &height);
+			"img/walls.xpm", &width, &height);
 	data->img_floor = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/floor.xpm", &width, &height);
+			"img/floor.xpm", &width, &height);
 	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/player.xpm", &width, &height);
+			"img/player.xpm", &width, &height);
 	data->img_exit = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/exit.xpm", &width, &height);
+			"img/exit.xpm", &width, &height);
 	data->img_collectible = mlx_xpm_file_to_image(data->mlx_ptr,
-			"textures/collectible.xpm", &width, &height);
+			"img/collectible.xpm", &width, &height);
 	if (!data->img_wall || !data->img_floor || !data->img_player
 		|| !data->img_exit || !data->img_collectible)
 	{

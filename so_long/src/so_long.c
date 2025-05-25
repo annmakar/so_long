@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: n <n@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:59:27 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/20 00:55:16 by n                ###   ########.fr       */
+/*   Updated: 2025/05/25 21:53:25 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,20 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nFailed to load map\n", 2);
 		return (1);
 	}
-
+	
 	// Calculate dimensions
 	data.map_height = 0;
 	while (data.map[data.map_height])
 		data.map_height++;
 	data.map_width = ft_strlen(data.map[0]);
-
+	printf("w %i, h %i\n", data.map_width,data.map_height);
+	for (int i = 0; i < data.map_height; i++)
+	{
+		printf("%i: %s\n", i, data.map[i]);
+	}
 	// Map Validations
 	validate_map_rectangular(data.map, data.map_height);         //  Rectangular
-	validate_map_elements(data.map);                             //  Valid characters and counts
+	validate_map_elements(data.map, &data);                             //  Valid characters and counts
 	validate_map_walls(data.map, data.map_width, data.map_height); //  Walls around
 
 	// Initialize game data
@@ -90,7 +94,9 @@ int	main(int argc, char **argv)
 		free_map(data.map);
 		return (1);
 	}
-
+	//temp fix
+	// data.player_x = 1;
+	// data.player_y = 1;
 	render_map(&data);
 	// Event hooks
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, &data);  // KeyPress event

@@ -6,7 +6,7 @@ all: $(NAME)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC
 
 OBJS = $(SRC:.c=.o)
 

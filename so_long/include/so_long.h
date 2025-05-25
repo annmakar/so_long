@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: n <n@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:28:23 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/20 00:43:14 by n                ###   ########.fr       */
+/*   Updated: 2025/05/25 21:52:39 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,38 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <X11/keysym.h>
 
 # include "ft_printf.h"
 # include "libft.h"
-# include "mlx.h"
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
 
 # define TILE_SIZE 32
-# define MAX_LINES 1024
+# define MAX_LINES 1000
 
 #ifndef KEYS_H
 #define KEYS_H
 
-#ifdef __APPLE__
-// macOS key codes (from MinilibX keycodes)
-# define KEY_W     13
-# define KEY_A     0
-# define KEY_S     1
-# define KEY_D     2
-# define KEY_ESC   53
-# define KEY_UP    126
-# define KEY_DOWN  125
-# define KEY_LEFT  123
-# define KEY_RIGHT 124
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+# define AR_UP	    65362
+# define AR_DOWN	65364
+# define AR_LEFT	65361
+# define AR_RIGHT	65363
 
-#else
-// Linux keysyms from X11/keysym.h
-#include <X11/keysym.h>
-# define KEY_W     XK_w
-# define KEY_A     XK_a
-# define KEY_S     XK_s
-# define KEY_D     XK_d
-# define KEY_ESC   XK_Escape
-# define KEY_UP    XK_Up
-# define KEY_DOWN  XK_Down
-# define KEY_LEFT  XK_Left
-# define KEY_RIGHT XK_Right
-#endif
-
+// # define KEY_W     XK_w
+// # define KEY_A     XK_a
+// # define KEY_S     XK_s
+// # define KEY_D     XK_d
+// # define KEY_ESC   XK_Escape
+// # define KEY_UP    XK_Up
+// # define KEY_DOWN  XK_Down
+// # define KEY_LEFT  XK_Left
+// # define KEY_RIGHT XK_Right
 #endif
 
 typedef struct s_data {
@@ -92,7 +86,7 @@ char	**load_map(const char *filename);
 void	validate_map_rectangular(char **map, int height);
 // so_long.h
 void	validate_map_rectangular(char **map, int height);
-void	validate_map_elements(char **map);
+void	validate_map_elements(char **map, t_data *data);
 void	validate_map_walls(char **map, int width, int height);
 
 #endif

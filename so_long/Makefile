@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: n <n@student.42.fr>                        +#+  +:+       +#+         #
+#    By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 16:16:45 by annmakar          #+#    #+#              #
-#    Updated: 2025/05/20 00:24:09 by n                ###   ########.fr        #
+#    Updated: 2025/05/25 20:05:49 by annmakar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,15 @@ SRC_DIR     = src
 OBJ_DIR     = obj
 INC_DIR     = include
 
-SRCS        = so_long.c moves.c
+SRCS        = so_long.c moves.c validation.c map.c
 
 LIBFT_DIR   = libft
 FP_DIR      = ft_printf
 GNL_DIR     = get_next_line
 MLX_DIR     = mlx
 
-CC          = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(FP_DIR) -I$(GNL_DIR) -I.
+CC          = cc
+CFLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR) -I$(LIBFT_DIR) -I$(FP_DIR) -I$(GNL_DIR) -I.
 
 UNAME_S     := $(shell uname -s)
 
@@ -46,6 +46,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) \
 		-L$(LIBFT_DIR) -lft \
 		-L$(FP_DIR) -lftprintf \
+		-L$(GNL_DIR) -lgnl \
 		$(MLX_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)

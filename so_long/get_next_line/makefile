@@ -1,4 +1,4 @@
-NAME = gnl.a
+NAME = libgnl.a
 
 SRC = get_next_line.c get_next_line_utils.c
 
@@ -6,7 +6,7 @@ all: $(NAME)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC -I../libft
 
 OBJS = $(SRC:.c=.o)
 

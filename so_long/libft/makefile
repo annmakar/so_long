@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: n <n@student.42.fr>                        +#+  +:+       +#+         #
+#    By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 17:44:23 by annmakar          #+#    #+#              #
-#    Updated: 2025/05/18 04:10:29 by n                ###   ########.fr        #
+#    Updated: 2025/05/25 17:59:31 by annmakar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fPIC
 
 NAME = libft.a
 

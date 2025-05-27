@@ -6,7 +6,7 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:58:37 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/27 21:19:48 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:11:21 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ void	load_images(t_data *data)
 	width = TILE_SIZE;
 	height = TILE_SIZE;
 	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr,
-			"img/walls.xpm", &width, &height);
+			"textures/walls.xpm", &width, &height);
 	data->img_floor = mlx_xpm_file_to_image(data->mlx_ptr,
-			"img/floor.xpm", &width, &height);
+			"textures/floor.xpm", &width, &height);
 	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr,
-			"img/player.xpm", &width, &height);
+			"textures/player.xpm", &width, &height);
 	data->img_exit = mlx_xpm_file_to_image(data->mlx_ptr,
-			"img/exit.xpm", &width, &height);
+			"textures/exit.xpm", &width, &height);
 	data->img_collectible = mlx_xpm_file_to_image(data->mlx_ptr,
-			"img/collectible.xpm", &width, &height);
+			"textures/collectible.xpm", &width, &height);
 	if (!data->img_wall || !data->img_floor || !data->img_player
 		|| !data->img_exit || !data->img_collectible)
 	{

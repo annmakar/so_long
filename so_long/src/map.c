@@ -6,10 +6,9 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:58:37 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/25 22:03:26 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:25:53 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "so_long.h"
 
@@ -19,24 +18,33 @@ char	**load_map(const char *filename)
 	char	*line;
 	char	**map;
 	int		i;
+	int		len;
 
 	i = 0;
-	map = malloc(sizeof(char *) * (MAX_LINES + 1)); // MAX_LINES = your max map height
-	if(!map)
-		return(NULL);
-	fd = open(filename, O_RDONLY); //o_rdonly open file for reading only
+	map = malloc(sizeof(char *) * (MAX_LINES + 1));
+	if (!map)
+		return (NULL);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
-		int len = ft_strlen(line);
+		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
 			line[len - 1] = '\0';
 		map[i++] = line;
+		line = get_next_line(fd);
 	}
 	map[i] = NULL;
 	close(fd);
 	return (map);
+}
+
+void	put_tile(t_data *data, int x, int y, void *img)
+{
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		img, x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void	render_map(t_data *data)
@@ -45,36 +53,26 @@ void	render_map(t_data *data)
 	int	x;
 
 	y = 0;
-	while (y < data->map_height)  //Keep looping as long as y is less than the map height
+	while (y < data->map_height)
 	{
 		x = 0;
 		while (x < data->map_width)
 		{
 			if (data->map[y][x] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img_wall, x * TILE_SIZE, y * TILE_SIZE);
+				put_tile(data, x, y, data->img_wall);
 			else if (data->map[y][x] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img_floor, x * TILE_SIZE, y * TILE_SIZE);
+				put_tile(data, x, y, data->img_floor);
 			else if (data->map[y][x] == 'P')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img_player, x * TILE_SIZE, y * TILE_SIZE);
+				put_tile(data, x, y, data->img_player);
 			else if (data->map[y][x] == 'E')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img_exit, x * TILE_SIZE, y * TILE_SIZE);
+				put_tile(data, x, y, data->img_exit);
 			else if (data->map[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img_collectible, x * TILE_SIZE, y * TILE_SIZE);
+				put_tile(data, x, y, data->img_collectible);
 			x++;
 		}
 		y++;
 	}
 }
-/*data->mlx_ptr = MLX instance
-data->win_ptr = window
-data->img_wall = image of a wall
-x * TILE_SIZE = horizontal pixel position
-y * TILE_SIZE = vertical pixel position */
 
 void	load_images(t_data *data)
 {
@@ -115,17 +113,3 @@ void	destroy_images(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->img_collectible);
 }
 
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (!map)
-		return;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}

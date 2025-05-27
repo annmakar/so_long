@@ -6,7 +6,7 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:28:23 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/25 21:52:39 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:29:33 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@
 // # define KEY_RIGHT XK_Right
 #endif
 
-typedef struct s_data {
+typedef struct s_data
+{
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_wall;
@@ -66,27 +67,47 @@ typedef struct s_data {
 	int		player_y;
 	int		move_count;
 	int		collectible_count;
-} t_data;
+}	t_data;
 
-// main logic
-void	render_map(t_data *data);
-void	move_player(t_data *data, int new_x, int new_y);
-int		on_keypress(int keysym, t_data *data);
-int		on_destroy(t_data *data);
+typedef struct s_map_counters
+{
+	int	player_count;
+	int	exit_count;
+}	t_map_counters;
 
-// image & memory
-void	load_images(t_data *data);
-void	destroy_images(t_data *data);
-void	free_map(char **map);
-void	destroy_all(t_data *data);
-void	exit_game(t_data *data);
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
-// map
-char	**load_map(const char *filename);
-void	validate_map_rectangular(char **map, int height);
-// so_long.h
-void	validate_map_rectangular(char **map, int height);
-void	validate_map_elements(char **map, t_data *data);
-void	validate_map_walls(char **map, int width, int height);
+typedef struct s_queue
+{
+	t_point	*points;
+	int		size;
+	int		capacity;
+}	t_queue;
+
+void		render_map(t_data *data);
+void		move_player(t_data *data, int new_x, int new_y);
+int			on_keypress(int keysym, t_data *data);
+int			on_destroy(t_data *data);
+void		load_images(t_data *data);
+void		destroy_images(t_data *data);
+void		free_map(char **map);
+void		destroy_all(t_data *data);
+void		exit_game(t_data *data);
+void		ft_check_args(int argc, t_data *data);
+void		ft_init_map(t_data *data, char *filename);
+void		ft_init_graphics(t_data *data);
+char		**load_map(const char *filename);
+void		put_tile(t_data *data, int x, int y, void *img);
+void		validate_map_rectangular(char **map, int height, t_data *data);
+void		validate_map_elements(char **map, t_data *data);
+void		validate_map_walls(char **map, int width, int height, t_data *data);
+void		ft_validate_map(t_data *data);
+int			ft_fill(t_data *data);
+void		ft_free_exit(t_data *data, int exit_code);
+void		ft_free_exit(t_data *data, int exit_code);
 
 #endif

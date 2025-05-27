@@ -6,7 +6,7 @@
 #    By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 16:16:45 by annmakar          #+#    #+#              #
-#    Updated: 2025/05/25 20:05:49 by annmakar         ###   ########.fr        #
+#    Updated: 2025/05/27 19:48:07 by annmakar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_DIR     = src
 OBJ_DIR     = obj
 INC_DIR     = include
 
-SRCS        = so_long.c moves.c validation.c map.c
+SRCS        = so_long.c moves.c validation.c map.c ft_fill.c
 
 LIBFT_DIR   = libft
 FP_DIR      = ft_printf

@@ -6,7 +6,7 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:59:27 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/27 20:44:42 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:10:42 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	destroy_all(t_data *data)
 		free(data->mlx_ptr);
 	}
 	free_map(data->map);
-	exit(EXIT_SUCCESS);
 }
 
 void	exit_game(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:28:23 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/27 20:29:33 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:23:15 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <X11/keysym.h>
-
 # include "ft_printf.h"
 # include "libft.h"
 # include "../mlx/mlx.h"
@@ -26,9 +25,6 @@
 
 # define TILE_SIZE 32
 # define MAX_LINES 1000
-
-#ifndef KEYS_H
-#define KEYS_H
 
 # define W 119
 # define A 97
@@ -39,17 +35,6 @@
 # define AR_DOWN	65364
 # define AR_LEFT	65361
 # define AR_RIGHT	65363
-
-// # define KEY_W     XK_w
-// # define KEY_A     XK_a
-// # define KEY_S     XK_s
-// # define KEY_D     XK_d
-// # define KEY_ESC   XK_Escape
-// # define KEY_UP    XK_Up
-// # define KEY_DOWN  XK_Down
-// # define KEY_LEFT  XK_Left
-// # define KEY_RIGHT XK_Right
-#endif
 
 typedef struct s_data
 {

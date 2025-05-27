@@ -6,7 +6,7 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:58:37 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/27 20:25:53 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:19:48 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,3 @@ void	destroy_images(t_data *data)
 	if (data->img_collectible)
 		mlx_destroy_image(data->mlx_ptr, data->img_collectible);
 }
-

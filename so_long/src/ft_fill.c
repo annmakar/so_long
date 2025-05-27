@@ -6,7 +6,7 @@
 /*   By: annmakar <annmakar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 19:12:57 by annmakar          #+#    #+#             */
-/*   Updated: 2025/05/27 20:43:02 by annmakar         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:14:02 by annmakar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	floodfill(t_data *data, int x, int y)
 {
+	if (x < 0 || x >= data->map_width || y < 0 || y >= data->map_height)
+		return ;
 	if (data->map[y][x] == '1' || data->map[y][x] == 'o' ||
 		data->map[y][x] == 'c' || data->map[y][x] == 'e')
 		return ;
@@ -34,6 +36,8 @@ static void	floodfill(t_data *data, int x, int y)
 
 static void	floodrefill(t_data *data, int x, int y)
 {
+	if (x < 0 || x >= data->map_width || y < 0 || y >= data->map_height)
+		return ;
 	if (data->map[y][x] == '1' || data->map[y][x] == '0'
 		|| data->map[y][x] == 'C' || data->map[y][x] == 'E')
 		return ;
